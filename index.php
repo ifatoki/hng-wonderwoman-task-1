@@ -47,7 +47,7 @@ ob_end_flush();
         ?>
         <html>
         <body>
-        <h1>Format</h1>
+        <h1>Script Format:</h1>
         <ul>
 
             <?php
