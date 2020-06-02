@@ -2,8 +2,8 @@
 newFunction();
 
 function newFunction() {
-    let name = prompt("What is your full name?");
-    let id = prompt("What is your HNGi7 ID?");
-    let lang = prompt("What is your language for task 2?");
+    let name = "Brenda Okumu";
+    let id = "HNG-05716";
+    let lang = "JavaScript";
     alert(`Hello World, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task`);
 }
