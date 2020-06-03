@@ -17,5 +17,5 @@
 	
 	
 	echo "Hello World, this is ".FULL_NAME." with HNGi7 ID ".HNG_ID;
-	echo " using ".$language " for stage 2 task ".EMAIL;
+	echo " using ".$language." for stage 2 task ".EMAIL;
 ?>
