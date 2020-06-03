@@ -1,7 +1,12 @@
 <?php
 
-$hello= "Hello world, this is Mercy Kipyegon with HNGi7 ID HNG-01819 using php for stage 2 task";
-
-echo $hello;
+header('Content-type: text/plain');
+$hngid='HNG-01819';
+$name='Mercy Kipyegon';
+$email="mercyjemosop@gmail.com";
+$language="PHP";
+$hello= "Hello world, this is ".$name.", Email ".$email." with HNGi7 ID ".$hngid. " using ".$language. " for stage 2 task, ";
+$str=array($hello, "id"=>$hngid, "name"=>$name, "email"=>$email, "language"=>$language);
+print json_encode($str);
 
 ?>
