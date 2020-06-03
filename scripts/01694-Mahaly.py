@@ -3,7 +3,7 @@ def printHello(fullname, ID, language):
 
 if __name__ == '__main__':
     fullname = "Mahalinoro Razafimanjato"
-    ID = "01694"
+    ID = "HNG-01694"
     language = "Python"
     print(printHello(fullname, ID, language), flush=True)
 
