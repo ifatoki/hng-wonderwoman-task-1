@@ -1,8 +1,9 @@
 const name = 'Omotola Macaulay';
 const id = 'HNG-02272';
+const email = 'tolamacaulay@gmail.com'
 function firstTask(){
   console.log(
-    `Hello World, this is ${name} with HNGi7 ID ${id} using JavaScript for stage 2 task`
+    `Hello World, this is ${name} with HNGi7 ID ${id} using javascript for stage 2 task ${email}`
   );
 };
 
