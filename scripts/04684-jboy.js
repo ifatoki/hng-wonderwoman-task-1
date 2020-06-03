@@ -1,4 +1,4 @@
-var name = "Taiwo Adejare Emmnanuel";
+var name = "Taiwo Adejare Emmanuel";
 var hng_id = "HNG-04684";
 var lang = "JavaScript";
 
