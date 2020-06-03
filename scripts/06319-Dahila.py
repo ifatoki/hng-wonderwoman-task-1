@@ -1,1 +1,10 @@
-print("Hello World, this is Gloria Iyobosa with HNGi7 ID HNG-06319 using python for stage 2 task.")
+#this is the first task for HNGi7
+
+firstname = "Gloria"
+lastname =  "Iyobosa"
+ID = "HNG-06319"
+lang = "Python"
+email = "just_aig@rocketmail.com"
+
+print("Hello World, this is", firstname, "with HNGi7 ID", ID,  "using", lang, "for stage 2 task.")
+print (email)
