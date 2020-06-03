@@ -3,12 +3,13 @@
 var helloWorld = {}; // create object
 
 name = "Melissa Ugrai";  /// name property
-hngId = "hng-00487";    /// HNGi7 ID property
-language = "JavaScript";   /// language property
+hngId = "HNG-00487";    /// HNGi7 ID property
+language = "javaScript";   /// language property
+email = "mugrai@gmail.com";  // email property
 
 var runScript =  function()   ///run function to add string together
 {
-  console.log( "Hello World, this is " + this.name + " with " + this.hngId +" using " + this.language + " for Stage 2 task.");  /// console. log with string combination
+  console.log( "Hello World, this is " + this.name + " with HNGi7 ID " + this.hngId +" using " + this.language + " for stage 2 task " + this.email);  /// console. log with string combination
 };  /// end of function
 
 runScript();  ///call function to run
