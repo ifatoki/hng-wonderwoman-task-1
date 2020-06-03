@@ -1,23 +1,17 @@
 <?php
-
-
 $json = $_SERVER["QUERY_STRING"] ?? '';
-
 $files = scandir("scripts/");
 
 unset($files[0]);
 unset($files[1]);
-
 $output = [];
 $outputJSON = [];
 $data = [];
-
 $success = 0;
 $failure = 0;
 
 foreach ($files as $file) {
     $extension = explode('.', $file);
-
     switch ($extension[1]) {
         case 'php':
             $startScript = "php";
@@ -51,13 +45,10 @@ function testFileContent($string)
     if (preg_match('/^Hello\sWorld[,|.|!]?\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z|#]{2,}\sfor\sstage\s2\stask\s[a-zA-Z|#]*@[a-z0-9-]+(\.[a-z0-9-]+).?$/i', trim($string))) {
         return 'Pass';
     }
-   
-
     return 'Fail';
 }
 
-ob_end_flush();
-
+// ob_end_flush();
     if (isset($json) && $json == 'json') {
         echo json_encode($output);
     } else {
@@ -111,7 +102,6 @@ ob_end_flush();
                           <div>
                             <span class="bold text-white">Total Passes</span>
                             <b><?php echo $success; ?></b>
-                            
                           </div> 
                         </div>
                       </div> 
@@ -121,14 +111,11 @@ ob_end_flush();
                           <div>
                             <span class="bold text-white">Total Fail</span>
                             <b><?php echo $failure; ?></b>
-                            
                           </div> 
                         </div>
                       </div> 
-                      
                 </div>
 
-                
                 <h4 class="text-light">Script Format:</h4>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -142,41 +129,42 @@ ob_end_flush();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $sn =1;
-                             
+                            <?php $sn =1;
         foreach ($output as  $value) {
             if ($value[1] == 'Pass') {
                 $color = 'green';
             } else {
                 $color = 'red';
             }
-
-
-            $string = $value[0];
             //extraction of email from string
-                                
+            $string = $value[0];
             $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
             preg_match_all($email_pattern, $string, $em_matches); ?>
 
-                                <tr class="bold <?php echo $color; ?>">
-                                    <td><?php echo $sn++; ?></td>
-                                    <td><?php
-                                        // echo $value[2];
-                                        echo str_replace("-", " ", $value[2]) ?? ''; ?></td>
-                                    <td><?php echo $em_matches[0][0] ?? ''; ?></td>
-                                    <td><?php echo  $value[0] ?></td>
-                                    <td>
-                                        <?php echo  $value[1] ?>
-                                        <?php
-                                            if ($value[1] == 'Pass') {
-                                                echo "<span class='text-success'>✔</span>";
-                                            } else {
-                                                echo "<span class='text-danger'>✖</span>";
-                                            } ?>
-                                    </td>
-                                </tr>
-                            <?php
+                                    <?php if (isset($output)) { ?>
+                                        <tr class="bold <?php echo $color; ?>">
+                                            <td><?php echo $sn++; ?></td>
+                                            <td><?php
+                                                // echo $value[2];
+                                                echo str_replace("-", " ", $value[2]) ?? ''; ?></td>
+                                            <td><?php echo $em_matches[0][0] ?? ''; ?></td>
+                                            <td><?php echo  $value[0] ?></td>
+                                            <td>
+                                                <?php echo  $value[1] ?>
+                                                <?php
+                                                    if ($value[1] == 'Pass') {
+                                                        echo "<span class='text-success'>✔</span>";
+                                                    } else {
+                                                        echo "<span class='text-danger'>✖</span>";
+                                                    } ?>
+                                            </td>
+                                        </tr>
+                                    <?php }
+            flush();
+            ob_flush();
+            sleep(1); //used this to test the buffering
+                                     ?>
+                                <?php
         } ?>
                         </tbody>
 
