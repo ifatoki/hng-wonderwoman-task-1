@@ -9,7 +9,7 @@
 <?php
 
 $myName = "Theresa Obamwonyi";
-$myHngId = "01949";
+$myHngId = "HNG-01949";
 $myLanguage = "PHP";
 
 
