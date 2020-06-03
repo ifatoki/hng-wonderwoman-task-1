@@ -1,0 +1,1 @@
+document.write("Hello World, this is ABULMALEEK BABAJIDE with HNGi7 ID HNG-05367 using javascript for stage 2 task");
