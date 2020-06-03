@@ -11,9 +11,10 @@
 $myName = "Theresa Obamwonyi";
 $myHngId = "HNG-01949";
 $myLanguage = "PHP";
+$myEmail = "theresaobamwonyi@gmail.com";
 
 
-print "<h2>Hello World, this is ".$myName." with HNGi7 ID " .$myHngId. " using ".$myLanguage." for stage 2 task</h2>";
+print "<h2>Hello World, this is ".$myName." with HNGi7 ID " .$myHngId. " using ".$myLanguage." for stage 2 task ".$myEmail."</h2>";
 
  ?>
 </body>
