@@ -1,0 +1,1 @@
+console.log("Hello World, this is Ibifuro Odu with HNGi7 ID HNG-04225 using javascript for stage 2 task oduibifuro@gmail.com");
