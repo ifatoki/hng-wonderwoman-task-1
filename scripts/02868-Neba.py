@@ -3,7 +3,7 @@ def task1(name, ID, language, email):
 
 name = "Neba Roland"
 ID = "HNG-02868"
-language = "Python"
+language = "python"
 email = "n.ngwa@alustudent.com"
 
 print(task1(name, ID, language, email))
