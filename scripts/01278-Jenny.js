@@ -6,3 +6,4 @@ function myFunction()
  let language = "JavaScript";
  let email = "osejoseph33@gmail.com";
  console.log(`Hello world, this is ${myName} with HNGi7 ID ${id} using ${language} for stage 2 task ${email}`)
+
