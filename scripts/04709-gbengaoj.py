@@ -1,9 +1,3 @@
-"""
-Updated on Wed Jun 3 2020 11:27 PM
-
-author: gbenga.ojo
-"""
-
 # To print some text
 
 name = "Gbenga Ojo"
