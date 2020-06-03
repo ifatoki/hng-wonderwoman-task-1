@@ -5,5 +5,6 @@ function newFunction() {
     let name = "Brenda Okumu";
     let id = "HNG-05716";
     let lang = "JavaScript";
-    alert(`Hello World, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task`);
+    let hello = `Hello World, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task`;
+    console.log(hello);
 }
