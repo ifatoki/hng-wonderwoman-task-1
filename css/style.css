@@ -15,6 +15,7 @@ p{
   .red{background-color: #f7c1ca;}
   .bold{font-weight: bold;}
   .padding-t{padding-top: 100px;}
+  .dataTables_length label, .dataTables_filter label{color: #FFF !important;}
 /******************************
 
 Stati - minimal statistical cards

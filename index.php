@@ -58,9 +58,10 @@ function testFileContent($string)
         <html>
         <head>
             <title>Stage 2 Task</title>
-            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
             <link rel="stylesheet" type="text/css" href="css/style.css">
-            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
         </head>
         
 
@@ -117,8 +118,9 @@ function testFileContent($string)
                 </div>
 
                 <h4 class="text-light">Script Format:</h4>
+               
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table id="example1" class="table table-bordered">
                         <thead>
                             <tr class="bg-dark text-white">
                                 <th>S/N</th>
@@ -146,7 +148,7 @@ function testFileContent($string)
                                             <td><?php echo $sn++; ?></td>
                                             <td><?php
                                                 echo $value[2] ?? '';
-            // echo str_replace("-", " ", $value[2]) ?? ''; ?></td>
+            // echo str_replace("-", " ", $value[2]) ?? '';?></td>
                                             <td><?php echo $em_matches[0][0] ?? ''; ?></td>
                                             <td><?php echo  $value[0] ?></td>
                                             <td>
@@ -170,8 +172,25 @@ function testFileContent($string)
             
 
         </body>
-
+     
+    <!-- END: Page JS-->
         </html>
-<?php
-    } ob_start();
-?>
+<?php } ob_start(); ?>
+
+    <script src="js/vendors.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+
+    <script src="js/datatables.bootstrap4.min.js"></script>
+    <script >
+        $(function() {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": true,
+            });
+        });
+    </script>
+
