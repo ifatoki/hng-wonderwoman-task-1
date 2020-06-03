@@ -9,4 +9,4 @@ function outPutDetails(name,id,lang){
         Hello world, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task.
     `);
 }
-outPutDetails('Peter Oluwasegun','HNG-05916','JavaScrip Language');
+outPutDetails('Peter Oluwasegun','HNG-05916','JavaScrip');
