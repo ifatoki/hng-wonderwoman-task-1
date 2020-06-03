@@ -1,1 +1,0 @@
-console.log("Hello World, this Emmy Leke with HNGi7 ID 05176 using Javascript for stage 2 task");
