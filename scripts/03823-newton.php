@@ -9,7 +9,8 @@
     <?php
     $name = "Newton Kamau ";
     $hng_id = "HNG-03823";
-    echo "Hello world, this is ". $name . " with " . $hng_id . " using php for stage two task .";
+    $email = "kamaunewton78@gmail.com";
+    echo "Hello world, this is ". $name . " with " . $hng_id . " using php for stage two task ". "". "my email address is ". "". $email;
     ?>
 </body>
 </html>
