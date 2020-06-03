@@ -4,7 +4,7 @@ const hngID = "HNG-02459";
 const email = "ce-jbodurotwumasi4619@st.umat.edu.gh";
 
 function task (name, hngID, email){
-  console.log("Hello World, this is " + name + " with HNGi7 ID " + hngID +" using javascript for stage 2 task "+email);
+  console.log("Hello World, this is " + name + " with HNGi7 ID " + hngID + " and email " + email + " using javascript for stage 2 task");
 }
 
 task(name,hngID, email);
