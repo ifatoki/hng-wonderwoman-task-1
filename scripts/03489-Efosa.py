@@ -5,4 +5,4 @@ language = ("Python")
 level = ("for stage 2 task")
 email = ("blessingefosa@gmail.com")
 
-print (intro,name,"with", id, "and","email" ,email,"using", language,level)
+print (intro,name,"with", id,"using", language,level, email)
