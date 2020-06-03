@@ -141,12 +141,12 @@ function testFileContent($string)
             $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
             preg_match_all($email_pattern, $string, $em_matches); ?>
 
-                                    <?php if (isset($output)) { ?>
+                                    
                                         <tr class="bold <?php echo $color; ?>">
                                             <td><?php echo $sn++; ?></td>
                                             <td><?php
-                                                // echo $value[2];
-                                                echo str_replace("-", " ", $value[2]) ?? ''; ?></td>
+                                                echo $value[2] ?? '';
+            // echo str_replace("-", " ", $value[2]) ?? ''; ?></td>
                                             <td><?php echo $em_matches[0][0] ?? ''; ?></td>
                                             <td><?php echo  $value[0] ?></td>
                                             <td>
@@ -159,11 +159,7 @@ function testFileContent($string)
                                                     } ?>
                                             </td>
                                         </tr>
-                                    <?php }
-            flush();
-            ob_flush();
-            sleep(1); //used this to test the buffering
-                                     ?>
+                                   
                                 <?php
         } ?>
                         </tbody>
