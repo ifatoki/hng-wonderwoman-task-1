@@ -6,8 +6,8 @@
 * After forking the repository, clone the repository to your local computer. You can do this by typing in your console `git clone [link-to-your-forked-version-of-the-repo]`
 * Next up you navigate into the **scripts** folder in the cloned repository by typing `cd hng-wonderwoman-task-1/scripts`
 * Confirm you are in the **develop** branch by typing `git checkout develop`
-* Create a new file this directory. The name of the file should be *[HNG_ID]-[slack-username].[file_ext]* for example `1324-itunuloluwa.js` **OR** copy the script you have already written into the folder **AND** name it to match the format above.
-* The file should contain your code written in **python, javascript or php** that prints *"Hello World, this is [full name] with HNGi7 ID [ID] using [language] for stage 2 task"*
+* Create a new file this directory. The name of the file should be *[the 5 digit number in your HNG_ID]-[slack-username].[file_ext]* for example `01234-itunuloluwa.js` **OR** copy the script you have already written into the folder **AND** name it to match the format above.
+* The file should contain your code written in **python, javascript or php** that prints *"Hello World, this is [full name] with HNGi7 ID [ID] using [language] for stage 2 task"* For example `"Hello World, this is Itunuloluwa Fatoki with HNGi7 ID HNG-01234 using javascript for stage 2 task"`
 * Save the file and commit your changes.
 * Push your changes back to your fork in Github by doing a `git push`.
 * On Github, create a new pull pull request to the **develop** branch in the base repository (**ifatoki/hng-wonderwoman-task-1**).
