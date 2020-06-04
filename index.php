@@ -8,7 +8,7 @@ function refine($output, $pattern, $filename)
     if ($pass) {
         $status = "pass";
         $array_of_sentence = explode(" ", $output);
-        $email = end($array_of_sentence);
+        $email = trim(end($array_of_sentence));
     } else {
         $status = "fail";
         $email = 'nil';
