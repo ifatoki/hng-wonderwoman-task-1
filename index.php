@@ -131,8 +131,8 @@ function testFileContent($string)
                         <thead>
                             <tr class="bg-dark text-white">
                                 <th>S/N</th>
+                                <th>File Name</th>
                                 <th>file type</th>
-                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Messages</th>
                                 <th>Status</th>
@@ -154,10 +154,11 @@ function testFileContent($string)
                                                         
                                                             <tr class="bold <?php echo $color; ?>">
                                                                 <td><?php echo $sn++; ?></td>
-                                                                <td><?php echo $value[3]; ?></td>
+                                                                
                                                                 <td><?php
                                                                     echo $value[2] ?? '';
                                 // echo str_replace("-", " ", $value[2]) ?? '';?></td>
+                                                                <td><?php echo $value[3]; ?></td>
                                                                 <td><?php echo $em_matches[0][0] ?? ''; ?></td>
                                                                 <td><?php echo  $value[0] ?></td>
                                                                 <td>
