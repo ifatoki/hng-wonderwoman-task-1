@@ -69,6 +69,7 @@ if (isset($json) && $json == 'json') {
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -126,7 +127,18 @@ if (isset($json) && $json == 'json') {
             </div>
 
             <h4 class="text-light">Script Format:</h4>
-
+            <ul class="alert message clearfix">
+                    <h2 class="animated flash infinite bold text-center">Attention!!! Attention!!! Attention!!! </h2>
+                  <strong>Please ensure that your output redered certifies through the instructions below:</strong>
+                    <div class="text-uppercase"><u>Message Pattern</u></div>
+                    <li>👉 Hello World, this is <b class="text-dark">Ciroma Adekunle</b> with HNGi7 ID <b class="text-dark">HNG-1010</b> using <b class="text-dark">Javascript</b> for stage 2 task <b class="text-dark">abc@example.com</b></li>
+                    <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
+                    <li>👉 Ensure you have only two names [Firstname and lastname] only</li>
+                    <li>👉 Ensure you have no full stop after the phrase [task]</li>
+                    <li>👉 Ensure you added an email address to</li>
+                  
+                  <span class="float-right">Enter your id to find your project 👇</span>
+            </ul>
             <div class="table-responsive">
                 <table id="example1" class="table table-bordered">
                     <thead>
