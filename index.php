@@ -13,7 +13,7 @@ $failure = 0;
 foreach ($files as $file) {
     $extension = explode('.', $file);
     switch ($extension[1]) {
-        case 'php':
+         case 'php':
             $startScript = "php";
             break;
         case 'js':
@@ -21,6 +21,18 @@ foreach ($files as $file) {
             break;
         case 'py':
             $startScript = "python";
+            break;
+        case 'dart':
+            $startScript = "dart";
+            break;
+        case 'java':
+            $startScript = "java";
+
+            exec("javac scripts/" . $file);
+            break;
+
+        default:
+            $startScript = "php";
             break;
     }
 
