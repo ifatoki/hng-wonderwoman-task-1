@@ -12,29 +12,7 @@ $failure = 0;
 
 foreach ($files as $file) {
     $extension = explode('.', $file);
-    switch ($extension[1]) {
-         case 'php':
-            $startScript = "php";
-            break;
-        case 'js':
-            $startScript = "node";
-            break;
-        case 'py':
-            $startScript = "python";
-            break;
-        case 'dart':
-            $startScript = "dart";
-            break;
-        case 'java':
-            $startScript = "java";
-
-            exec("javac scripts/" . $file);
-            break;
-
-        default:
-            $startScript = "php";
-            break;
-    }
+    $script_types = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
     if (!array_key_exists($extension[1], $script_types)) {
         echo 'files with extension .' . $extension[1] . ' not allowed';
       } else {
