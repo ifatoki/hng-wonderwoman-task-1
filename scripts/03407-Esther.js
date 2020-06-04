@@ -1,18 +1,14 @@
 
-function show(){
+/* variables declaration
 
-var details =
-`{
-    "name": "Umoh Esther",
-    "hng_id": "HNG-03407",
-    "language": "JavaScript",
-    "email":"umohesther08@gmail.com"
-}`
+to make the returned string dynamic, it's useful to declare variables for parts of the string that can change, e.g. Name, HNG Id, language and stage number 
 
-var json = JSON.parse(details);
+*/
 
-console.log(`Hello World, this is ${json.name} with HNGi7 ID ${json.hng_id} using ${json.language} for stage 2 task and ${json.email}`);
+var name = "Esther Umoh";
+var hng_id = "HNG-03407";
+var task_stage = 2;
+var language = "JavaScript";
+var email = "umohesther08@@gmail.com";
 
-}
-
-show();
+console.log(`Hello World, this is ${name} with HNGi7 ID ${hng_id} using ${language} for stage ${task_stage} task ${email}`);
