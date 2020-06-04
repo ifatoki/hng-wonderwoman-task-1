@@ -1,2 +1,6 @@
-message = 'Hello World, this is Olukanyinsola Olomi with HNGi7 ID HNG-02140 using Python for stage 2 task kanyinb@gmail.com'
-print(message)
+full_name = 'Olukanyinsola Olomi'
+ID = 'HNG-02140'
+Language = "Python"
+Email = 'kanyinb@gmail.com'
+
+print("Hello world, this is", full_name, "with HNGi7 ID", ID, "using", Language, "for stage 2 task.", Email, )
