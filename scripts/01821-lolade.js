@@ -3,7 +3,7 @@ function hngTask(){
     var hngId, fullName, language, email
 
     hngId = "HNG-01821";
-    fullName = "OLayiwola Ololade";
+    fullName = "Olayiwola Ololade";
     language = "javascript";
     email = "ololadeolayiwola01@gmail.com";
 
