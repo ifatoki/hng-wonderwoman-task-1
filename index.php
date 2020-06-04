@@ -12,12 +12,14 @@ $failure = 0;
 
 foreach ($files as $file) {
     $extension = explode('.', $file);
-    $script_types = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
-    if (!array_key_exists($extension[1], $script_types)) {
+   $startScript = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
+
+    if (!array_key_exists($extension[1], $startScript)) {
         echo 'files with extension .' . $extension[1] . ' not allowed';
       } else {
-
-        $f = exec($startScript . " scripts/".$file);
+        $run = $startScript[$extension[1]];
+        // $file_output = exec($run . " scripts/" . $file);
+        $f = exec($run . " scripts/".$file);
 
         @$data[$extension[0]]->content = $f;
         $data[$extension[0]]->status = testFileContent($f);
