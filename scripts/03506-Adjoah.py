@@ -1,8 +1,9 @@
 # declaring variables
 
-name='Adwoa Serwaa Boafo'
-my_id='03506'
-email_add='adwoaserwaaboafo@gmail.com'
+fullname='Adwoa Serwaa Boafo'
+ID='03506'
+email_address='adwoaserwaaboafo@gmail.com'
+language = "Python"
 
 #print statement
-print("Hello World, this is "+name + " with HNGi7 ID "+ my_id +" using Python for stage 2 task "+ email_add)
+print("Hello World, this is " + fullname + " with HNGi7 ID "+ ID +" using "+ language + " for stage 2 task "+ email_address)
