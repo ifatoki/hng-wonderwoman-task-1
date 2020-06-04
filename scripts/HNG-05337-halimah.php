@@ -1,7 +1,7 @@
 <?php
 
 $id = "HNG-05337";
-$full_name = "Abdul-Azeez Halimah Olaolohun";
+$full_name = "Abdul-Azeez Halimah";
 $language = "PHP";
 $email_address = "abdulazeezhaleemah@gmail.com";
 
