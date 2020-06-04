@@ -24,7 +24,8 @@ foreach ($files as $file) {
         @$data[$extension[0]]->content = $f;
         $data[$extension[0]]->status = testFileContent($f);
         $data[$extension[0]]->name = $extension[0];
-        $output[] = [$f, testFileContent($f), $extension[0]];
+        $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+
     }
 }
 
@@ -130,6 +131,7 @@ function testFileContent($string)
                         <thead>
                             <tr class="bg-dark text-white">
                                 <th>S/N</th>
+                                <th>file type</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Messages</th>
@@ -138,38 +140,39 @@ function testFileContent($string)
                         </thead>
                         <tbody>
                             <?php $sn =1;
-        foreach ($output as  $value) {
-            if ($value[1] == 'Pass') {
-                $color = 'green';
-            } else {
-                $color = 'red';
-            }
-            //extraction of email from string
-            $string = $value[0];
-            $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
-            preg_match_all($email_pattern, $string, $em_matches); ?>
+                            foreach ($output as  $value) {
+                                if ($value[1] == 'Pass') {
+                                    $color = 'green';
+                                } else {
+                                    $color = 'red';
+                                }
+                                //extraction of email from string
+                                $string = $value[0];
+                                $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+                                preg_match_all($email_pattern, $string, $em_matches); ?>
 
-                                    
-                                        <tr class="bold <?php echo $color; ?>">
-                                            <td><?php echo $sn++; ?></td>
-                                            <td><?php
-                                                echo $value[2] ?? '';
-            // echo str_replace("-", " ", $value[2]) ?? '';?></td>
-                                            <td><?php echo $em_matches[0][0] ?? ''; ?></td>
-                                            <td><?php echo  $value[0] ?></td>
-                                            <td>
-                                                <?php echo  $value[1] ?>
-                                                <?php
-                                                    if ($value[1] == 'Pass') {
-                                                        echo "<span class='text-success'>✔</span>";
-                                                    } else {
-                                                        echo "<span class='text-danger'>✖</span>";
-                                                    } ?>
-                                            </td>
-                                        </tr>
-                                   
-                                <?php
-        } ?>
+                                                        
+                                                            <tr class="bold <?php echo $color; ?>">
+                                                                <td><?php echo $sn++; ?></td>
+                                                                <td><?php echo $value[3]; ?></td>
+                                                                <td><?php
+                                                                    echo $value[2] ?? '';
+                                // echo str_replace("-", " ", $value[2]) ?? '';?></td>
+                                                                <td><?php echo $em_matches[0][0] ?? ''; ?></td>
+                                                                <td><?php echo  $value[0] ?></td>
+                                                                <td>
+                                                                    <?php echo  $value[1] ?>
+                                                                    <?php
+                                                                        if ($value[1] == 'Pass') {
+                                                                            echo "<span class='text-success'>✔</span>";
+                                                                        } else {
+                                                                            echo "<span class='text-danger'>✖</span>";
+                                                                        } ?>
+                                                                </td>
+                                                            </tr>
+                                                       
+                                                    <?php
+                            } ?>
                         </tbody>
 
                     </table>
