@@ -34,7 +34,7 @@ function refine($output, $pattern, $filename)
     $result = array('file' => $filename, 'output' => $output, 'name' => $name, 'id' => $hng_id, 'email' => $email, 'language' => $language, 'status' => $status);
     return $result;
 }
-$pattern = '/Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (.+)@(.+).(com|COM)$/i';
+$pattern = '/Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (.+)@(.+).(com|COM)\s*\n*/i';
 $data = array();
 foreach (glob('scripts/*.js') as $filename) {
     $output = shell_exec("node $filename");
