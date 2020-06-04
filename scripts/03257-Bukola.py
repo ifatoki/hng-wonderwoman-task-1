@@ -1,5 +1,5 @@
 def stage2():
-    first_name = "Bukola Idowu"
+    full_name = "Bukola Idowu"
     ID = "HNG-03257"
     language = "python"
     email = "idowu98official@gmail.com"
