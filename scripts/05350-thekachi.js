@@ -4,5 +4,5 @@ const myLanguage = "Javascript";
 const myEmail = "nzebenflorence@gmail.com";
 
 console.log(
-  `Hello World, this is ${myFullName} with HNGi7 ID ${myId} using ${myLanguage} for stage 2 task.`
+  `Hello World, this is ${myFullName} with HNGi7 ID ${myId} using ${myLanguage} for stage 2 task. My email is ${myEmail}.`
 );
