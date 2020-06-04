@@ -1,4 +1,4 @@
-let fullName = "Omieibi Promise Amapakabao";
+let fullName = "Omieibi Promise Amapakabo";
 let hngId = "HNG-02085";
 let lang = "Javascript";
 let email = "aomieibi@yahoo.com"
