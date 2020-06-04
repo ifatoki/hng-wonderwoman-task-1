@@ -4,7 +4,8 @@
 <?php
 $name = 'Festus Oluwaseyi Ogundele';
 $id_no= 'HNG-01004';
-$email = 'festusogundele9@gmail';
+$email = 'festusogundele9@gmail.com';
+
 $language = 'PHP';
 
 
