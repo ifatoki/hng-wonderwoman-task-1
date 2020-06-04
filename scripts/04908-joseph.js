@@ -5,4 +5,4 @@ let language = "JavaScript";
 
 
 information = `Hello World, this is ${fullName} with HNGI7 ID ${Hngi7_Id} using ${language} for stage 2 task ${email}`;
-Console.log(information);
+console.log(information);
