@@ -190,7 +190,7 @@ if (isset($json) && $json == 'json') {
                     <div class="text-uppercase"><u>Message Pattern</u></div>
                     
                     <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
-                    <li>👉 Ensure you have only two names [Firstname and lastname] only</li>
+                    <!-- <li>👉 Ensure you have only two names [Firstname and lastname] only</li> -->
                     <li>👉 Ensure you have no full stop after the phrase [task]</li>
                     <li>👉 Ensure you added an email address to</li>
                     <div> See example below</div>
