@@ -1,68 +1,60 @@
 <?php
 $json = $_SERVER["QUERY_STRING"] ?? '';
 $files = scandir("scripts/");
+
 unset($files[0]);
 unset($files[1]);
+$output = [];
+$outputJSON = [];
+$data = [];
 $success = 0;
 $failure = 0;
 
-
-$output = [];
-
 foreach ($files as $file) {
-  $extension = explode('.', $file);
-  // Initialize output template for JSON
-  $json_object = ['name' => '', 'id' => '', 'language' => '', 'status' => '', 'output' => '', 'file' => '', 'email' => ''];
-  $script_types = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
+    $extension = explode('.', $file);
+   $startScript = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
 
-  //skip unsupported file formats
-  if (!array_key_exists($extension[1], $script_types)) {
-    echo 'files with extension .' . $extension[1] . ' not allowed';
-  } else {
-    $run = $script_types[$extension[1]];
-    $file_output = exec($run . " scripts/" . $file);
-    // var_dump($run);
+    if (!array_key_exists($extension[1], $startScript)) {
+        echo 'files with extension .' . $extension[1] . ' not allowed';
+      } else {
+        $run = $startScript[$extension[1]];
+        // $file_output = exec($run . " scripts/" . $file);
+        $f = exec($run . " scripts/".$file);
 
-    /**We are trying to capture all the important info needed for the JSON output  */
-    if (preg_match('/Hello World, this is (.*?) with HNGi7 ID (.*?) using (.*?) for stage 2 task (.*)/', $file_output, $match) == 1) {
-
-      /**Here, we want to remove the email part from the string before testing with Regex */
-      $string_to_test = substr_replace($file_output, 'task', strpos($file_output, 'task'));
-
-      $json_object['name'] = $match[1];
-      $json_object['id'] = $match[2];
-      $json_object['language'] = $match[3];
-      $json_object['status'] = testFileContent($string_to_test);
-      $json_object['output'] = $string_to_test;
-      $json_object['file'] = $file;
-      $json_object['email'] = $match[4];
+        @$data[$extension[0]]->content = $f;
+        $data[$extension[0]]->status = testFileContent($f);
+        $data[$extension[0]]->name = $extension[0];
+        $output[] = [$f, testFileContent($f), $extension[0]];
     }
-    // var_dump($json_object);
-    array_push($output, $json_object);
-  }
 }
 
 foreach ($output as $status) {
-    if ($json_object['status'] == 'Pass') {
+    if ($status[1] == 'Pass') {
         $success++;
-    } elseif ($json_object['status'] == 'Fail') {
+    } elseif ($status[1] == 'Fail') {
         $failure++;
     }
 }
 
+
+// function extract_emails_from($string) {
+//          preg_match_all("/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i", $string, $matches);
+//          return $matches[0];
+// }
+
+// foreach($emails as $email) {
+//     echo trim($email).'<br/>';
+// }
+
 function testFileContent($string)
 {
-    if (preg_match('/^Hello\sWorld[,|.|!]*\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z]{3,}\sfor\sstage\s2\stask.?$/i', trim($string))) {
-    return 'Pass';
-  }
-    // if (preg_match('/^Hello\sWorld[,|.|!]?\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z|#]{2,}\sfor\sstage\s2\stask\s[a-zA-Z|#]*@[a-z0-9-]+(\.[a-z0-9-]+).?$/i', trim($string))) {
-    //     return 'Pass';
-    // }
+    if (preg_match('/^Hello\sWorld[,|.|!]?\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z|#]{2,}\sfor\sstage\s2\stask\s[\.^A-Za-z0-9\s]*@[a-z0-9-]+(\.[\.^A-Za-z0-9\s]+).?$/i', trim($string))) {
+        return 'Pass';
+    }
     return 'Fail';
 }
 
-ob_end_flush();
-
+// ob_end_flush();
     if (isset($json) && $json == 'json') {
         echo json_encode($output);
     } else {
@@ -146,45 +138,38 @@ ob_end_flush();
                         </thead>
                         <tbody>
                             <?php $sn =1;
-                                foreach ($output as  $value) {
+        foreach ($output as  $value) {
+            if ($value[1] == 'Pass') {
+                $color = 'green';
+            } else {
+                $color = 'red';
+            }
+            //extraction of email from string
+            $string = $value[0];
+            $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+            preg_match_all($email_pattern, $string, $em_matches); ?>
 
-                                  
                                     
-                                    //extraction of email from string
-                                    $name = $value['name'];
-                                    $message = $value['output'];
-                                    $email = $value['email'];
-                                    $status = $value['status'];
-                                    $id = $value['id'];
-
-                                    if ($status == 'Pass') {
-                                        $color = 'green';
-                                    } else {
-                                        $color = 'red';
-                                    }
-
-                                    // $string = $value[0];
-                                    // $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
-                                    // preg_match_all($email_pattern, $string, $em_matches); ?>
-
-                                    <?php //echo <<<EOL ?>
                                         <tr class="bold <?php echo $color; ?>">
-                                            <td><?php echo $sn++;  ?></td>
-                                            <td><?php echo $name;?></td>
-                                            <td><?php echo $email;?></td>
-                                            <td><?php echo $message;?></td>
+                                            <td><?php echo $sn++; ?></td>
+                                            <td><?php
+                                                echo $value[2] ?? '';
+            // echo str_replace("-", " ", $value[2]) ?? '';?></td>
+                                            <td><?php echo $em_matches[0][0] ?? ''; ?></td>
+                                            <td><?php echo  $value[0] ?></td>
                                             <td>
-                                              <?php echo $status;?>
-                                              <?php
-                                                    if ($status == 'Pass') {
+                                                <?php echo  $value[1] ?>
+                                                <?php
+                                                    if ($value[1] == 'Pass') {
                                                         echo "<span class='text-success'>✔</span>";
                                                     } else {
                                                         echo "<span class='text-danger'>✖</span>";
                                                     } ?>
                                             </td>
                                         </tr>
-                                   <?php //} EOL; ?>
-                                <?php } ?>
+                                   
+                                <?php
+        } ?>
                         </tbody>
 
                     </table>
