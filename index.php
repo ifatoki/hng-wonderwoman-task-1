@@ -204,8 +204,8 @@ if (isset($json) && $json == 'json') {
                         <tr class="bg-dark text-white">
                             <th>S/N</th>
                             <th>File Name</th>
-                            <th>file type</th>
-                            <!-- <th>Action step</th> -->
+                            <th>File type</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Messages</th>
                             <th>Status</th>
@@ -246,7 +246,7 @@ if (isset($json) && $json == 'json') {
                                     // echo str_replace("-", " ", $value[2]) ?? '';
                                     ?></td>
                                 <td><?php echo $value[3]; ?></td>
-
+                                <td><?php echo $value[4]; ?></td>
                                 <td><?php
                                     if (!empty($em_matches[0]) && isset($email_pattern)) {
                                         echo $em_matches[0][0];
