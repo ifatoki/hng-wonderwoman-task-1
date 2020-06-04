@@ -1,11 +1,18 @@
+
 <?php
 $json = $_SERVER["QUERY_STRING"] ?? '';
 $checkArray=array();
-array_push(($checkArray),"Hello","World,", "this", "is", "with", "HNGi7","ID","and" ,"email" , "using", "for" ,"stage" ,"2" ,"task");
+array_push(($checkArray),"Hello","World,", "this", "is", "with", "HNGi7","ID", "using", "for" ,"stage" ,"2" ,"task");
+foreach(glob('scripts/*.php')as $filename){
+  $r=shell_exec("/usr/bin/php $filename");
+$array[$filename]=$r;
+}
+
 foreach(glob('scripts/*.js')as $filename){
   $r=shell_exec("node $filename");
 $array[$filename]=$r;
 }
+
 
 foreach(glob('scripts/*.py')as $filename){
   $r=shell_exec("python $filename");
@@ -13,10 +20,10 @@ foreach(glob('scripts/*.py')as $filename){
 }
 $jsonarray=array();
 $pass=0;
-$total=sizeof($array);
+$total=sizeof($array);$b=0;
 foreach($array as $key=>$value)
 {
-  // Hello World, this is somto with HNGi7 ID HNG-04817 and email somto@gmail.com using Python for stage 2 task
+  // Hello World, this is somto with HNGi7 ID HNG-04817 using Python for stage 2 task somto@gmail.com 
 
 $x=explode(" ",$value);
 $length=sizeof($x);
@@ -27,13 +34,14 @@ $email="";
 $lang="";
 $f=explode("/",$key);
 $file=$f[1];
-$res=0;
+$res=0;$em=0;
+
 $output="$array[$key]";
 for($i=0;$i<$length;$i++)
-{
+{if(isset($checkArray[$m])){
 	if($x[$i]==$checkArray[$m])
 	{
-		
+		//echo "<pre>this:$m=$x[$i]</pre>";
 		$m++;$res++;
 	}
 	else if($m==4)
@@ -44,25 +52,39 @@ for($i=0;$i<$length;$i++)
 	{
 		$id=$x[$i];
 	}
-	else if($m==9)
-	{
-		$email=$x[$i];
-	}
-	else if($m==10)
+	else if($m==8)
 	{
 		$lang=$x[$i];
 	}
+	
      else
      {
-     	$m++;
+     //echo "<pre>$m=$x[$i]</pre>";
+      $m++;
      }
+
+  
+   }
+   else if(isset($x[$i]))
+   {
+   
+    $email=$x[$i];
+$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
+if (preg_match($regex, $email)) {
+ //echo $email ;
+  $em=1;
+} else { 
+ //echo $email . " is an invalid email. Please try again.";
+}
+
+}
 
 }
 $status="Fail";
-//echo "<pre>$res</pre>";
-if($res==13)
-{
-$status="Pass"; $pass++;
+//echo "<pre>$b============$res $em</pre>";
+if($res==12&&$em==1)
+{if($email!=" "){
+$status="Pass"; $pass++;}
 }
  
 $newarray=array("file"=> "$file","output"=> "$output","name"=>"$name","id"=> "$id","email"=> "$email","language"=> "$lang","status"=> "$status");
@@ -71,7 +93,7 @@ array_push(($jsonarray),$newarray);
 
 }
 $myJSON = json_encode($jsonarray);
-//print_r($jsonarray);
+
 ob_end_flush();
 
     if (isset($json) && $json == 'json') {
@@ -81,8 +103,8 @@ ob_end_flush();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>WONDER WOMAN</title>
-	<style>
+  <title>WONDER WOMAN</title>
+  <style>
 table {
   border-collapse: collapse;
   width: 100%;
@@ -95,11 +117,11 @@ th, td {
 }
 .tt
 {
-	background-color: green;
+  background-color: green;
 }
 .tti
 {
-	background-color: red;
+  background-color: red;
 
 }
 </style>
@@ -111,35 +133,54 @@ th, td {
 
 
 <table>
-  <tr>
-    <th>Email</th>
+  <tr><th>sno</th>
+    <th>file</th>
+    <th>Name</th>
     <th>OUTPUT</th>
   <th>Status</th>
   </tr>
   <?php
+  $d=0;
 foreach($jsonarray as $key=>$value)
-{$rr=array();
-	array_push($rr,$jsonarray[$key]);
-	$t=$rr[0]["name"];
+{$rr=array();$d++;
+  array_push($rr,$jsonarray[$key]);
+  $o=$rr[0]["file"];
+  $t=$rr[0]["name"];
     $e=$rr[0]["output"];
     $s=$rr[0]["status"];
+    if($e=="")
+    {$e="Nothing is printed";
+    $t="nothing";
+      echo " <tr class='tti'>
+    <td>$d</td>
+    <td>$o</td>
+    <td>$t</td>
+    <td>$e</td>
+    <td>$s</td>
+  </tr>";
+    }else{
     if($s=="Pass"){
  echo " <tr class='tt'>
+<td>$d</td>
+    <td>$o</td>
     <td>$t</td>
     <td>$e</td>
     <td>$s</td>
   </tr>";}
   else
   {
-  	echo " <tr class='tti'>
+    echo " <tr class='tti'>
+    <td>$d</td>
+    <td>$o</td>
     <td>$t</td>
     <td>$e</td>
     <td>$s</td>
   </tr>";
   }
-}
+}}
   ?>
 </table>
 </body>
 </html>
 <?php } ?>
+
