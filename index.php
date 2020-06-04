@@ -13,20 +13,40 @@ $failure = 0;
 foreach ($files as $file) {
     $extension = explode('.', $file);
 
-    $startScript = ['php' => 'php',  'py' => 'python', 'js' => 'node'];
-    if (!array_key_exists($extension[1], $startScript)) {
-        echo 'files with extension .' . $extension[1] . ' not allowed';
-    } else {
-        $run = $startScript[$extension[1]];
-        // $file_output = exec($run . " scripts/" . $file);
-
-        $f = exec($run . " scripts/" . $file);
-
-        @$data[$extension[0]]->content = $f;
-        $data[$extension[0]]->status = testFileContent($f);
-        $data[$extension[0]]->name = $extension[0];
-        $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+    switch ($extension[1]) {
+        case 'php':
+            $startScript = "php";
+            break;
+        case 'js':
+            $startScript = "node";
+            break;
+        case 'py':
+            $startScript = "python";
+            break;
     }
+
+
+    $f = exec($startScript . " scripts/".$file);
+
+    @$data[$extension[0]]->content = $f;
+    $data[$extension[0]]->status = testFileContent($f);
+    $data[$extension[0]]->name = $extension[0];
+    $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+
+    // $startScript = ['php' => 'php',  'py' => 'python', 'js' => 'node'];
+    // if (!array_key_exists($extension[1], $startScript)) {
+    //     echo 'files with extension .' . $extension[1] . ' not allowed';
+    // } else {
+    //     $run = $startScript[$extension[1]];
+    //     // $file_output = exec($run . " scripts/" . $file);
+
+    //     $f = exec($run . " scripts/" . $file);
+
+    //     @$data[$extension[0]]->content = $f;
+    //     $data[$extension[0]]->status = testFileContent($f);
+    //     $data[$extension[0]]->name = $extension[0];
+    //     $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+    // }
 }
 
 foreach ($output as $status) {
@@ -38,34 +58,24 @@ foreach ($output as $status) {
 }
 
 
-// function extract_emails_from($string) {
-//          preg_match_all("/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i", $string, $matches);
-//          return $matches[0];
-// }
-
-// foreach($emails as $email) {
-//     echo trim($email).'<br/>';
-// }
-
 function testFileContent($string)
 {
-    if (preg_match('/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))\s*\n*$/i', trim($string))) {
+    if (preg_match('/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i', trim($string))) {
         return 'Pass';
     }
     return 'Fail';
 }
 
-ob_end_flush();
+// 
 
 
 if (isset($json) && $json == 'json') {
-    $encodedJSON = json_encode($output, JSON_PRETTY_PRINT);
-  echo $encodedJSON;
-
-    // echo json_encode($output, JSON_PRETTY_PRINT);
+    header('Content-Type: application/json');
+    // echo $json;
+    echo json_encode($output, JSON_PRETTY_PRINT);
 } else {
 ?>
-
+<?php ob_end_flush(); ?>
     <!DOCTYPE html>
     <html>
 
@@ -240,24 +250,24 @@ if (isset($json) && $json == 'json') {
     </body>
 
     <!-- END: Page JS-->
+    <script src="js/vendors.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+
+    <script src="js/datatables.bootstrap4.min.js"></script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": true,
+            });
+        });
+    </script>
 
     </html>
 <?php }
 ob_start(); ?>
 
-<script src="js/vendors.min.js"></script>
-<script src="js/datatables.min.js"></script>
-
-<script src="js/datatables.bootstrap4.min.js"></script>
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": false,
-            "info": true,
-            "autoWidth": true,
-        });
-    });
-</script>
