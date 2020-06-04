@@ -1,6 +1,7 @@
-let fullName = "Chisom Blessing";
-let HNGi7_ID = "HNG-05641";
-let language = "Javascript";
-let email = "chisomanikwenze@gmail.com";
-const MESSAGE = `Hello World,this is ${fullName} with HNGi7 ID ${HNGi7_ID} using ${language} for stage 2 task ${email}`;
-console.log(MESSAGE);
+var name = "Blessing Chisom";
+var hngID = "HNG-05641";
+var stage = 2;
+var language = "JavaScript";
+var email = "chisomanikwenze@gmail.com";
+
+console.log(`Hello World, this is ${name} with HNGi7 ID ${hngID} using ${language} for stage ${stage} task ${email}`);
