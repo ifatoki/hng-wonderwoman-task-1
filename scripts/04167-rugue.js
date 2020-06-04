@@ -1,6 +1,6 @@
 const greeting = "Hello World"
 const myName = "Osarugue Enehizena";
-const myID = "04167";
+const myID = "HNG-04167";
 const languageUsed = "JavaScript"
 const stage = "stage 2"
 const email = "nehirugue@gmail.com"
