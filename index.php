@@ -131,11 +131,13 @@ if (isset($json) && $json == 'json') {
                     <h2 class="animated flash infinite bold text-center">Attention!!! Attention!!! Attention!!! </h2>
                   <strong>Please ensure that your output redered certifies through the instructions below:</strong>
                     <div class="text-uppercase"><u>Message Pattern</u></div>
-                    <li>👉 Hello World, this is <b class="text-dark">Ciroma Adekunle</b> with HNGi7 ID <b class="text-dark">HNG-1010</b> using <b class="text-dark">Javascript</b> for stage 2 task <b class="text-dark">abc@example.com</b></li>
+                    
                     <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
                     <li>👉 Ensure you have only two names [Firstname and lastname] only</li>
                     <li>👉 Ensure you have no full stop after the phrase [task]</li>
                     <li>👉 Ensure you added an email address to</li>
+                    <div> See example below</div>
+                    <li>👉 Hello World, this is <b class="text-dark">Ciroma Adekunle</b> with HNGi7 ID <b class="text-dark">HNG-1010</b> using <b class="text-dark">Javascript</b> for stage 2 task <b class="text-dark">abc@example.com</b></li>
                   
                   <span class="float-right">Enter your id to find your project 👇</span>
             </ul>
