@@ -65,5 +65,5 @@ foreach ($data as $info) {
     }
 }
 
-echo $pass_count . 'passed';
-echo count($data) . 'cases';
+// echo $pass_count . 'passed';
+// echo count($data) . 'cases';
