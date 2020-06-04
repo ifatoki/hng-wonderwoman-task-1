@@ -1,6 +1,6 @@
 let name = "Umoh Esther";
 let hng_id = "HNG-03407";
-let lang = "JavaScript";
+let language = "JavaScript";
 let email = "umohesther08@gmail.com";
 
 console.log(
@@ -11,6 +11,6 @@ console.log(
     " and email " +
     email +
     " using " +
-    lang +
+    language +
     " for stage 2 task "
 );
