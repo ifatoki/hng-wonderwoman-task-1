@@ -1,7 +1,8 @@
-const display = (name, hngID,language,email) => {
-    return `Hello World, this is ${name} with HNGi7 ID ${hngID} using ${language} for stage 2 task ${email}`;
-    
-}
+const name = "Akinsiku Oluwafemi David ";
+const hngID = "HNG-00504 ";
+const language = "Javascript ";
+const email = "akinsiku.o@yahoo.com ";
 
-display("Akinsiku OLuwafemi David", "HNG-00504", "Javascript", "akinsiku.o@yahoo.com");
+
+console.log( `Hello World,this is ${name} with HNGi7 ${hngID} using ${language} for stage 2 task ${email}`);
 
