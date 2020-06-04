@@ -1,5 +1,5 @@
 <?php
-$full_name="Aisosa Akpevweoghene Ogheneowho Ugono";
+$full_name="Aisosa Akpevweoghene";
 $id="HNG-00918";
 $language="PHP";
 $email="akpeugono@gmail.com";
