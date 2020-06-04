@@ -5,12 +5,15 @@ $files = scandir("scripts/");
 unset($files[0]);
 unset($files[1]);
 $output = [];
+$output2 = [];
 $outputJSON = [];
 $data = [];
 $success = 0;
 $failure = 0;
+$pattern = '/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i';
 
 foreach ($files as $file) {
+  $filename = $file;
     $extension = explode('.', $file);
 
     switch ($extension[1]) {
@@ -31,7 +34,44 @@ foreach ($files as $file) {
     @$data[$extension[0]]->content = $f;
     $data[$extension[0]]->status = testFileContent($f);
     $data[$extension[0]]->name = $extension[0];
-    $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+
+    // Get email
+    $pass = preg_match($pattern, $f);
+    if ($pass) {
+        $status = "pass";
+        $array_of_sentence = explode(" ", $f);
+        $email = trim(end($array_of_sentence));
+    } else {
+        $status = "fail";
+        $email = 'nil';
+    }
+
+    // $array_of_sentence = explode(" ", $f);
+    // $email = trim(end($array_of_sentence));
+
+    // Get name
+    $name_search = preg_match('/\bis (.{1,}\s)+with/', $f, $name_array);
+    if ($name_search) {
+        $name = $name_array[1];
+    } else {
+        $name = 'nill';
+    }
+
+    // Get ID
+    $id_search = preg_match('/HNG-\d{5}/', $f, $id_array);
+    if ($id_search) {
+        $hng_id = $id_array[0];
+    } else {
+        $hng_id = 'nill';
+    }
+
+    $output[] = [$f, testFileContent($f), $filename, $extension[1], $name, $email, $hng_id];
+
+
+    $output2[] = array('file' => $filename, 'output' => $f, 'name' => $name, 'id' => $hng_id, 
+      'email' => $email, 'language' => $extension[1], 'status' => testFileContent($f));
+
+
 
     // $startScript = ['php' => 'php',  'py' => 'python', 'js' => 'node'];
     // if (!array_key_exists($extension[1], $startScript)) {
@@ -66,13 +106,15 @@ function testFileContent($string)
     return 'Fail';
 }
 
-// 
+// echo '<pre>';
+// print_r($output);
+// echo '</pre>';
 
 
 if (isset($json) && $json == 'json') {
     header('Content-Type: application/json');
-    // echo $json;
-    echo json_encode($output, JSON_PRETTY_PRINT);
+    // return $result;
+    echo json_encode($output2, JSON_PRETTY_PRINT);
 } else {
 ?>
 <?php ob_end_flush(); ?>
@@ -148,7 +190,7 @@ if (isset($json) && $json == 'json') {
                     <div class="text-uppercase"><u>Message Pattern</u></div>
                     
                     <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
-                    <li>👉 Ensure you have only two names [Firstname and lastname] only</li>
+                    <!-- <li>👉 Ensure you have only two names [Firstname and lastname] only</li> -->
                     <li>👉 Ensure you have no full stop after the phrase [task]</li>
                     <li>👉 Ensure you added an email address to</li>
                     <div> See example below</div>
@@ -162,8 +204,8 @@ if (isset($json) && $json == 'json') {
                         <tr class="bg-dark text-white">
                             <th>S/N</th>
                             <th>File Name</th>
-                            <th>file type</th>
-                            <!-- <th>Action step</th> -->
+                            <th>File type</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Messages</th>
                             <th>Status</th>
@@ -204,7 +246,7 @@ if (isset($json) && $json == 'json') {
                                     // echo str_replace("-", " ", $value[2]) ?? '';
                                     ?></td>
                                 <td><?php echo $value[3]; ?></td>
-
+                                <td><?php echo $value[4]; ?></td>
                                 <td><?php
                                     if (!empty($em_matches[0]) && isset($email_pattern)) {
                                         echo $em_matches[0][0];
