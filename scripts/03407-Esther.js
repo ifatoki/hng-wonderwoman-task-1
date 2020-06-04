@@ -1,6 +1,6 @@
 const name = "Umoh Esther";
 const hng_id = "HNG-03407";
-const language = "JavaScript";
+const lang = "JavaScript";
 const email = "umohesther08@gmail.com";
 
 console.log(
@@ -9,7 +9,7 @@ console.log(
     " with HNGi7 ID " +
     hng_id +
     " using " +
-    language +
+    lang +
     " for stage 2 task " +
     email
 );
