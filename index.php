@@ -12,15 +12,15 @@ $failure = 0;
 
 foreach ($files as $file) {
     $extension = explode('.', $file);
- 
-    $startScript = ['php' => 'php',  'py' => 'python'];
+
+    $startScript = ['php' => 'php',  'py' => 'python', 'js' => 'node'];
     if (!array_key_exists($extension[1], $startScript)) {
         echo 'files with extension .' . $extension[1] . ' not allowed';
     } else {
         $run = $startScript[$extension[1]];
         // $file_output = exec($run . " scripts/" . $file);
-     
-        $f = exec($run . " scripts/".$file);
+
+        $f = exec($run . " scripts/" . $file);
 
         @$data[$extension[0]]->content = $f;
         $data[$extension[0]]->status = testFileContent($f);
@@ -158,13 +158,13 @@ if (isset($json) && $json == 'json') {
                             $content_pattern = '/Hello World, this is (.*?) with HNGi7 ID (.*?) using (.*?) for stage 2 task (.*)/';
                             preg_match_all($content_pattern, $string, $match)
 
-                            
+
                             // echo '<pre>';
                             // print_r($em_matches[0]);
                             // echo '</pre>';
-                            
 
-                            ?>
+
+                        ?>
 
 
                             <tr class="bold <?php echo $color; ?>">
@@ -175,29 +175,29 @@ if (isset($json) && $json == 'json') {
                                     // echo str_replace("-", " ", $value[2]) ?? '';
                                     ?></td>
                                 <td><?php echo $value[3]; ?></td>
-                                
-                                <td><?php 
+
+                                <td><?php
                                     if (!empty($em_matches[0]) && isset($email_pattern)) {
-                                      echo $em_matches[0][0];
-                                    }elseif (empty($em_matches[0]) && empty($value[0])) {
-                                      echo ' Email is empty and 👉';
-                                    }elseif(empty($em_matches[0]) && !empty($value[0])){
-                                      echo ' Email empty';
-                                    }elseif(empty($em_matches[0]) && !isset($email_pattern)){
-                                      echo 'Email Pattern not match';
+                                        echo $em_matches[0][0];
+                                    } elseif (empty($em_matches[0]) && empty($value[0])) {
+                                        echo ' Email is empty and 👉';
+                                    } elseif (empty($em_matches[0]) && !empty($value[0])) {
+                                        echo ' Email empty';
+                                    } elseif (empty($em_matches[0]) && !isset($email_pattern)) {
+                                        echo 'Email Pattern not match';
                                     }
-                                     ?></td>
+                                    ?></td>
                                 <td>
-                                  <?php
-                                  if (empty($value[0])) {
-                                     echo 'Content not rendered properly';
-                                    }elseif (!empty($value[0])) {
-                                      echo $value[0];
-                                    }elseif (!empty($value[0]) && !isset($content_pattern)) {
-                                      echo 'Messages pattern not match';
+                                    <?php
+                                    if (empty($value[0])) {
+                                        echo 'Content not rendered properly';
+                                    } elseif (!empty($value[0])) {
+                                        echo $value[0];
+                                    } elseif (!empty($value[0]) && !isset($content_pattern)) {
+                                        echo 'Messages pattern not match';
                                     }
-                                  ?>
-                                 </td>
+                                    ?>
+                                </td>
                                 <td>
                                     <?php echo  $value[1] ?>
                                     <?php
