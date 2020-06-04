@@ -2,6 +2,7 @@
 let name = "Opaluwa Emidowo-ojo";
 let ID = "HNG-04704";
 let language = "Javascript";
+let email = "opaluwaamy@gmail.com";
 
 
 console.log(
