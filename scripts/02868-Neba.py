@@ -1,8 +1,9 @@
-def task1(fullname, ID, language):
-    return "Hello World, this is " + fullname + " with HNGi7 ID " + ID + " using " + language + " for stage 2 task"
+def task1(name, ID, language, email):
+    return "Hello World, this is " + name + " with HNGi7 ID " + ID + " using " + language + " for stage 2 task " + email
 
-fullname = "Neba Roland"
+name = "Neba Roland"
 ID = "HNG-02868"
-language = "Python"
+language = "python"
+email = "n.ngwa@alustudent.com"
 
-print(task1(fullname, ID, language))
+print(task1(name, ID, language, email))
