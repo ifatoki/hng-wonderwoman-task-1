@@ -1,5 +1,5 @@
 <?php
 
-$myData = "Hello World, this is David Dante Frank and my HNG Id is HNG-01946 and I am using PHP for stage 2 task davidfrankoziwo@gmail.com";
+$myData = "Hello World, this is Dante Frank with HNGi7 ID HNG-01946 using PHP for stage 2 task davidfrankoziwo@gmail.com";
 
 echo $myData;
