@@ -19,21 +19,13 @@ foreach ($files as $file) {
     } else {
         $run = $startScript[$extension[1]];
         // $file_output = exec($run . " scripts/" . $file);
-        $f = exec($run . " scripts/" . $file);
+     
+        $f = exec($run . " scripts/".$file);
 
-        $regex_result = testFileContent($f);
-        if ($regex_result === 'Pass') {
-            $action_step = 'Good job ' . $extension[0] . ' your output is fine 😃';
-        } elseif ($regex_result === 'Fail') {
-            if (!strpos('@', $f)) {
-                $action_step = $extension[0] . ' please include email in your output to pass this test';
-            }
-        }
-
-        $data[$extension[0]]->content = $f;
-        $data[$extension[0]]->status = $regex_result;
+        @$data[$extension[0]]->content = $f;
+        $data[$extension[0]]->status = testFileContent($f);
         $data[$extension[0]]->name = $extension[0];
-        $output[] = [$f, $regex_result, $extension[0], $extension[1], $action_step];
+        $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
     }
 }
 
@@ -142,7 +134,7 @@ if (isset($json) && $json == 'json') {
                             <th>S/N</th>
                             <th>File Name</th>
                             <th>file type</th>
-                            <th>Action step</th>
+                            <!-- <th>Action step</th> -->
                             <th>Email</th>
                             <th>Messages</th>
                             <th>Status</th>
@@ -159,7 +151,20 @@ if (isset($json) && $json == 'json') {
                             //extraction of email from string
                             $string = $value[0];
                             $email_pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
-                            preg_match_all($email_pattern, $string, $em_matches); ?>
+                            preg_match_all($email_pattern, $string, $em_matches);
+
+
+
+                            $content_pattern = '/Hello World, this is (.*?) with HNGi7 ID (.*?) using (.*?) for stage 2 task (.*)/';
+                            preg_match_all($content_pattern, $string, $match)
+
+                            
+                            // echo '<pre>';
+                            // print_r($em_matches[0]);
+                            // echo '</pre>';
+                            
+
+                            ?>
 
 
                             <tr class="bold <?php echo $color; ?>">
@@ -170,9 +175,29 @@ if (isset($json) && $json == 'json') {
                                     // echo str_replace("-", " ", $value[2]) ?? '';
                                     ?></td>
                                 <td><?php echo $value[3]; ?></td>
-                                <td><?php echo $value[4]; ?></td>
-                                <td><?php echo $em_matches[0][0] ?? ''; ?></td>
-                                <td><?php echo  $value[0] ?></td>
+                                
+                                <td><?php 
+                                    if (!empty($em_matches[0]) && isset($email_pattern)) {
+                                      echo $em_matches[0][0];
+                                    }elseif (empty($em_matches[0]) && empty($value[0])) {
+                                      echo ' Email is empty and 👉';
+                                    }elseif(empty($em_matches[0]) && !empty($value[0])){
+                                      echo ' Email empty';
+                                    }elseif(empty($em_matches[0]) && !isset($email_pattern)){
+                                      echo 'Email Pattern not match';
+                                    }
+                                     ?></td>
+                                <td>
+                                  <?php
+                                  if (empty($value[0])) {
+                                     echo 'Content not rendered properly';
+                                    }elseif (!empty($value[0])) {
+                                      echo $value[0];
+                                    }elseif (!empty($value[0]) && !isset($content_pattern)) {
+                                      echo 'Messages pattern not match';
+                                    }
+                                  ?>
+                                 </td>
                                 <td>
                                     <?php echo  $value[1] ?>
                                     <?php
