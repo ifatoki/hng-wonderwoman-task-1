@@ -129,7 +129,7 @@ function testFileContent($string)
                     <table id="example1" class="table table-bordered">
                         <thead>
                             <tr class="bg-dark text-white">
-                                <th>#</th>
+                                <th>S/N</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Messages</th>
