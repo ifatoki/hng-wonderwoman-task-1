@@ -1,4 +1,4 @@
-full_name = 'great ihevueme'
+full_name = 'Great Ihevueme'
 hng_id = 'HNG-02700'
 lang = 'python'
 email = 'ihevuemeg@gmail.com'
