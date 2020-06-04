@@ -10,10 +10,10 @@ $outputJSON = [];
 $data = [];
 $success = 0;
 $failure = 0;
-$pattern = '/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i';
+$pattern = '/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))/i';
 
 foreach ($files as $file) {
-  $filename = $file;
+    $filename = $file;
     $extension = explode('.', $file);
 
     switch ($extension[1]) {
@@ -29,20 +29,18 @@ foreach ($files as $file) {
     }
 
 
-    $f = exec($startScript . " scripts/".$file);
+    $f = trim(exec($startScript . " scripts/" . $file));
 
     @$data[$extension[0]]->content = $f;
     $data[$extension[0]]->status = testFileContent($f);
     $data[$extension[0]]->name = $extension[0];
 
     // Get email
-    $pass = preg_match($pattern, $f);
+    $pass = preg_match($pattern, trim($f));
     if ($pass) {
-        $status = "pass";
         $array_of_sentence = explode(" ", $f);
         $email = trim(end($array_of_sentence));
     } else {
-        $status = "fail";
         $email = 'nil';
     }
 
@@ -68,8 +66,10 @@ foreach ($files as $file) {
     $output[] = [$f, testFileContent($f), $filename, $extension[1], $name, $email, $hng_id];
 
 
-    $output2[] = array('file' => $filename, 'output' => $f, 'name' => $name, 'id' => $hng_id, 
-      'email' => $email, 'language' => $extension[1], 'status' => testFileContent($f));
+    $output2[] = array(
+        'file' => trim($filename), 'output' => trim($f), 'name' => trim($name), 'id' => trim($hng_id),
+        'email' => trim($email), 'language' => trim($extension[1]), 'status' => testFileContent($f)
+    );
 
 
 
@@ -118,101 +118,103 @@ if (isset($json) && $json == 'json') {
 } else {
 ?>
 <?php ob_end_flush(); ?>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <title>Stage 2 Task</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/animate.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
+<head>
+    <title>Stage 2 Task</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 
-    <body>
-        <div class="container-fluid">
-            <nav class="navbar navbar-light  fixed-top" style="background-color: #FFF;">
-                <span class="navbar-text bold">
-                    HNGi7 Team Wonder Woman
-                </span>
-                <div class="float-right text-white">
-                    <small class="text-dark">
-                        Leader: <span class="btn btn-sm btn btn-outline-primary">@Xt</span>
-                    </small> &nbsp;
-                    <small class="text-dark">
-                        FrontEnd: <span class="btn btn-sm btn btn-outline-success">@Haneefah</span>
-                    </small> &nbsp;
-                    <small class="text-dark">
-                        DevOps: <span class="btn btn-sm btn btn-outline-info">@Itunuloluwa</span>
-                    </small> &nbsp;
-                </div>
-            </nav>
-        </div>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light  fixed-top" style="background-color: #FFF;">
+            <span class="navbar-text bold">
+                HNGi7 Team Wonder Woman
+            </span>
+            <div class="float-right text-white">
+                <small class="text-dark">
+                    Leader: <span class="btn btn-sm btn btn-outline-primary">@Xt</span>
+                </small> &nbsp;
+                <small class="text-dark">
+                    FrontEnd: <span class="btn btn-sm btn btn-outline-success">@Haneefah</span>
+                </small> &nbsp;
+                <small class="text-dark">
+                    DevOps: <span class="btn btn-sm btn btn-outline-info">@Itunuloluwa</span>
+                </small> &nbsp;
+            </div>
+        </nav>
+    </div>
 
-        <div class="container padding-t">
-            <div class="row  border mb-4">
-                <div class="col-md-4">
-                    <div class="stati turquoise ">
-                        <i class="fa fa-calculator"></i>
-                        <div>
-                            <span class="bold">Total Submitted</span>
-                            <b><?php echo ($success + $failure)  ?></b>
+    <div class="container padding-t">
+        <div class="row  border mb-4">
+            <div class="col-md-4">
+                <div class="stati turquoise ">
+                    <i class="fa fa-calculator"></i>
+                    <div>
+                        <span class="bold">Total Submitted</span>
+                        <b><?php echo ($success + $failure)  ?></b>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stati bg-turquoise ">
-                        <i class="fa fa-check-circle"></i>
-                        <div>
-                            <span class="bold text-white">Total Passes</span>
-                            <b><?php echo $success; ?></b>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stati bg-alizarin  ">
-                        <i class="fa fa-times-circle"></i>
-                        <div>
-                            <span class="bold text-white">Total Fail</span>
-                            <b><?php echo $failure; ?></b>
-                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="stati bg-turquoise ">
+                    <i class="fa fa-check-circle"></i>
+                    <div>
+                        <span class="bold text-white">Total Passes</span>
+                        <b><?php echo $success; ?></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stati bg-alizarin  ">
+                    <i class="fa fa-times-circle"></i>
+                    <div>
+                        <span class="bold text-white">Total Fail</span>
+                        <b><?php echo $failure; ?></b>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <h4 class="text-light">Script Format:</h4>
-            <ul class="alert message clearfix">
-                    <h2 class="animated flash infinite bold text-center">Attention!!! Attention!!! Attention!!! </h2>
-                  <strong>Please ensure that your output redered certifies through the instructions below:</strong>
-                    <div class="text-uppercase"><u>Message Pattern</u></div>
-                    
-                    <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
-                    <!-- <li>👉 Ensure you have only two names [Firstname and lastname] only</li> -->
-                    <li>👉 Ensure you have no full stop after the phrase [task]</li>
-                    <li>👉 Ensure you added an email address to</li>
-                    <div> See example below</div>
-                    <li>👉 Hello World, this is <b class="text-dark">Ciroma Adekunle</b> with HNGi7 ID <b class="text-dark">HNG-1010</b> using <b class="text-dark">Javascript</b> for stage 2 task <b class="text-dark">abc@example.com</b></li>
-                  
-                  <span class="float-right">Enter your id to find your project 👇</span>
-            </ul>
-            <div class="table-responsive">
-                <table id="example1" class="table table-bordered">
-                    <thead>
-                        <tr class="bg-dark text-white">
-                            <th>S/N</th>
-                            <th>File Name</th>
-                            <th>File type</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Messages</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $sn = 1;
+        <h4 class="text-light">Script Format:</h4>
+        <ul class="alert message clearfix">
+            <h2 class="animated flash infinite bold text-center">Attention!!! Attention!!! Attention!!! </h2>
+            <strong>Please ensure that your output redered certifies through the instructions below:</strong>
+            <div class="text-uppercase"><u>Message Pattern</u></div>
+
+            <li>👉 Ensure you have no exclamation mark [!] after Hello World</li>
+            <!-- <li>👉 Ensure you have only two names [Firstname and lastname] only</li> -->
+            <li>👉 Ensure you have no full stop after the phrase [task]</li>
+            <li>👉 Ensure you added an email address to</li>
+            <div> See example below</div>
+            <li>👉 Hello World, this is <b class="text-dark">Ciroma Adekunle</b> with HNGi7 ID <b
+                    class="text-dark">HNG-1010</b> using <b class="text-dark">Javascript</b> for stage 2 task <b
+                    class="text-dark">abc@example.com</b></li>
+
+            <span class="float-right">Enter your id to find your project 👇</span>
+        </ul>
+        <div class="table-responsive">
+            <table id="example1" class="table table-bordered">
+                <thead>
+                    <tr class="bg-dark text-white">
+                        <th>S/N</th>
+                        <th>File Name</th>
+                        <th>File type</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Messages</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $sn = 1;
                         foreach ($output as  $value) {
                             if ($value[1] == 'Pass') {
                                 $color = 'green';
@@ -238,16 +240,16 @@ if (isset($json) && $json == 'json') {
                         ?>
 
 
-                            <tr class="bold <?php echo $color; ?>">
-                                <td><?php echo $sn++; ?></td>
+                    <tr class="bold <?php echo $color; ?>">
+                        <td><?php echo $sn++; ?></td>
 
-                                <td><?php
+                        <td><?php
                                     echo $value[2] ?? '';
                                     // echo str_replace("-", " ", $value[2]) ?? '';
                                     ?></td>
-                                <td><?php echo $value[3]; ?></td>
-                                <td><?php echo $value[4]; ?></td>
-                                <td><?php
+                        <td><?php echo $value[3]; ?></td>
+                        <td><?php echo $value[4]; ?></td>
+                        <td><?php
                                     if (!empty($em_matches[0]) && isset($email_pattern)) {
                                         echo $em_matches[0][0];
                                     } elseif (empty($em_matches[0]) && empty($value[0])) {
@@ -258,8 +260,8 @@ if (isset($json) && $json == 'json') {
                                         echo 'Email Pattern not match';
                                     }
                                     ?></td>
-                                <td>
-                                    <?php
+                        <td>
+                            <?php
                                     if (empty($value[0])) {
                                         echo 'Content not rendered properly';
                                     } elseif (!empty($value[0])) {
@@ -268,48 +270,47 @@ if (isset($json) && $json == 'json') {
                                         echo 'Messages pattern not match';
                                     }
                                     ?>
-                                </td>
-                                <td>
-                                    <?php echo  $value[1] ?>
-                                    <?php
+                        </td>
+                        <td>
+                            <?php echo  $value[1] ?>
+                            <?php
                                     if ($value[1] == 'Pass') {
                                         echo "<span class='text-success'>✔</span>";
                                     } else {
                                         echo "<span class='text-danger'>✖</span>";
                                     } ?>
-                                </td>
-                            </tr>
+                        </td>
+                    </tr>
 
-                        <?php
+                    <?php
                         } ?>
-                    </tbody>
+                </tbody>
 
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
 
 
-    </body>
+</body>
 
-    <!-- END: Page JS-->
-    <script src="js/vendors.min.js"></script>
-    <script src="js/datatables.min.js"></script>
+<!-- END: Page JS-->
+<script src="js/vendors.min.js"></script>
+<script src="js/datatables.min.js"></script>
 
-    <script src="js/datatables.bootstrap4.min.js"></script>
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": true,
-            });
-        });
-    </script>
+<script src="js/datatables.bootstrap4.min.js"></script>
+<script>
+$(function() {
+    $("#example1").DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": true,
+    });
+});
+</script>
 
-    </html>
+</html>
 <?php }
 ob_start(); ?>
-
