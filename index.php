@@ -35,13 +35,17 @@ foreach ($files as $file) {
             $startScript = "php";
             break;
     }
+    if (!array_key_exists($extension[1], $script_types)) {
+        echo 'files with extension .' . $extension[1] . ' not allowed';
+      } else {
 
-    $f = exec($startScript . " scripts/".$file);
+        $f = exec($startScript . " scripts/".$file);
 
-    @$data[$extension[0]]->content = $f;
-    $data[$extension[0]]->status = testFileContent($f);
-    $data[$extension[0]]->name = $extension[0];
-    $output[] = [$f, testFileContent($f), $extension[0]];
+        @$data[$extension[0]]->content = $f;
+        $data[$extension[0]]->status = testFileContent($f);
+        $data[$extension[0]]->name = $extension[0];
+        $output[] = [$f, testFileContent($f), $extension[0]];
+    }
 }
 
 foreach ($output as $status) {
