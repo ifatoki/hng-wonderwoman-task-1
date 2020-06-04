@@ -12,7 +12,7 @@ $failure = 0;
 
 foreach ($files as $file) {
     $extension = explode('.', $file);
-   $startScript = ['php' => 'php', 'js' => 'node', 'py' => 'python'];
+   $startScript = ['php' => 'php',  'py' => 'python'];
 
     if (!array_key_exists($extension[1], $startScript)) {
         echo 'files with extension .' . $extension[1] . ' not allowed';
