@@ -5,4 +5,4 @@ let bio = {
     "ID" : "HNG-03875"
 };
 
-console.log(`Hello world, this is ${bio.name} with HNGi7 ID ${bio.ID} using ${bio.language} for stage 2 task ${bio.email}`);
+console.log(`Hello world, this is ${bio.name} with HNGi7 ID ${bio.ID} using ${bio.language} for stage 2 task ${bio.Email}`);
