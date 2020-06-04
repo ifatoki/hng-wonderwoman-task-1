@@ -5,12 +5,14 @@ $files = scandir("scripts/");
 unset($files[0]);
 unset($files[1]);
 $output = [];
+$output2 = [];
 $outputJSON = [];
 $data = [];
 $success = 0;
 $failure = 0;
 
 foreach ($files as $file) {
+  $filename = $file;
     $extension = explode('.', $file);
 
     switch ($extension[1]) {
@@ -31,7 +33,34 @@ foreach ($files as $file) {
     @$data[$extension[0]]->content = $f;
     $data[$extension[0]]->status = testFileContent($f);
     $data[$extension[0]]->name = $extension[0];
-    $output[] = [$f, testFileContent($f), $extension[0], $extension[1]];
+
+    // Get email
+    $array_of_sentence = explode(" ", $f);
+    $email = trim(end($array_of_sentence));
+
+    // Get name
+    $name_search = preg_match('/\bis (.{1,}\s)+with/', $f, $name_array);
+    if ($name_search) {
+        $name = $name_array[1];
+    } else {
+        $name = 'nill';
+    }
+
+    // Get ID
+    $id_search = preg_match('/HNG-\d{5}/', $f, $id_array);
+    if ($id_search) {
+        $hng_id = $id_array[0];
+    } else {
+        $hng_id = 'nill';
+    }
+
+    $output[] = [$f, testFileContent($f), $filename, $extension[1], $name, $email, $hng_id];
+
+
+    $output2[] = array('file' => $filename, 'output' => $f, 'name' => $name, 'id' => $hng_id, 
+      'email' => $email, 'language' => $extension[1], 'status' => testFileContent($f));
+
+
 
     // $startScript = ['php' => 'php',  'py' => 'python', 'js' => 'node'];
     // if (!array_key_exists($extension[1], $startScript)) {
@@ -66,13 +95,15 @@ function testFileContent($string)
     return 'Fail';
 }
 
-// 
+// echo '<pre>';
+// print_r($output);
+// echo '</pre>';
 
 
 if (isset($json) && $json == 'json') {
     header('Content-Type: application/json');
-    // echo $json;
-    echo json_encode($output, JSON_PRETTY_PRINT);
+    // return $result;
+    echo json_encode($output2, JSON_PRETTY_PRINT);
 } else {
 ?>
 <?php ob_end_flush(); ?>
