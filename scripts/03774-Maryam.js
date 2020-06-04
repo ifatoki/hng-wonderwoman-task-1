@@ -1,0 +1,1 @@
+console.log("Hello world, this is Maryam Sulaiman with HNGi7 ID HNG-03774 using Javascript ES6 for stage 2 task sulaiman.maryam@yahoo.co.uk");
