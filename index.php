@@ -34,7 +34,7 @@ function refine($output, $pattern, $filename)
     $result = array('file' => $filename, 'output' => $output, 'name' => $name, 'id' => $hng_id, 'email' => $email, 'language' => $language, 'status' => $status);
     return $result;
 }
-$pattern = '/Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (.+)@(.+).(com|COM)\s*\n*/i';
+$pattern = '/^Hello World, this is (.{1,}\s)+with HNGi7 ID HNG-\d{5} using (.*) for stage 2 task (.+)@(.+).(com|COM)\s*\n*$/i';
 $data = array();
 foreach (glob('scripts/*.js') as $filename) {
     $output = shell_exec("node $filename");
@@ -56,3 +56,14 @@ foreach (glob('scripts/*.php') as $filename) {
 
 $encodedJSON = json_encode($data, JSON_PRETTY_PRINT);
 echo $encodedJSON;
+
+$pass_count = 0;
+$total_cases = 0;
+foreach ($data as $info) {
+    if ($info['status'] == 'pass') {
+        $pass_count = $pass_count + 1;
+    }
+}
+
+// echo $pass_count . 'passed';
+// echo count($data) . 'cases';
