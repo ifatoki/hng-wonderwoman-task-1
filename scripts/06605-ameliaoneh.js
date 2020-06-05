@@ -2,4 +2,4 @@
 //Plain Javascript and Node.js is supported
 // html/css is not supported here 
 
-console.log("Hello world, this is Amelia Oneh with HNGi7 ID 06605 using JS language for stage 2 task aimieisaac@yahoo.com")
+console.log("Hello World, this is Amelia Oneh with HNGi7 ID HNG-06605 using JavaScript for stage 2 task aimieisaac@yahoo.com")
