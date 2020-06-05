@@ -15,7 +15,7 @@ function displayDetails() {
       details.id +
       " using " +
       details.language +
-      " for stage 2 task. " +
+      " for stage 2 task " +
       details.email
   );
 }
