@@ -1,5 +1,5 @@
 
-name = "Alawode Tolulope Samuel"
+name = "Alawode Samuel"
 hng_id = "HNG-05913"
 email = "tolulope.alawode@gmail.com"
 lang = "Python"
