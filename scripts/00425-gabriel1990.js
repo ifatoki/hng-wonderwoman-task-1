@@ -1,0 +1,1 @@
+console.log('Hello World, this is Elakpa Gabriel with HNGi7 ID HNG-00425 using javascript for stage 2 task anselmgerald@gmail.com');

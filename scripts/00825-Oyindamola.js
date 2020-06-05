@@ -1,9 +1,7 @@
-let name = 'Kareem Taiwo';
-let email = 'oyindamolataiwo23@gmail.com';
-let id = 'HNG-00825';
-let lang = 'Javascript';
+var fullname = "Kareem Taiwo";
+var ID = "HNG-00825"
+var language = "Javascript";
+var email = "oyindamolataiwo23@gmail.com";
 
-function myDetails() {
-return ('Hello World, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task ${email}');
-}
-console.log(myDetails());
+
+console.log("Hello World, this is " + fullname + " "  + "with HNGi7 ID " +  ID + " using " + language + " for stage 2 task " + email);
