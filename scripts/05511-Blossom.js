@@ -1,8 +1,7 @@
-const myFullName = "Babalola Blossom";
-const myID = "HNG-05511";
-const languageUsed = "Javascript";
-const emailAddress = "saphashb@gmail.com"
+const name = "Babalola Blossom";
+const id = "HNG-05511";
+const language = "Javascript";
+const email = "saphashb@gmail.com";
 
 console.log(`
-Hello World, this is ${myFullName} with HNGi7 ID ${myID}, using ${languageUsed} for stage 2 task ${emailAddress}
-`);
+Hello World, this is ${name} with HNGi7 ID ${id} using ${language} for stage 2 task ${email}`);
