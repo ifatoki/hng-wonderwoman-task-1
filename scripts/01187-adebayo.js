@@ -1,1 +1,1 @@
-console.log("Hello world!, I am Adebayo Solomon with HNG internship code HNG-01187 and email adebayosolomon74@gmail.com. I will be using Javascript for my stage two task");
+console.log("Hello World, this is Adebayo Solomon with HNGi7 ID HNG-01187 using javascript for stage 2 task adebayosolomon74@gmail.com")
