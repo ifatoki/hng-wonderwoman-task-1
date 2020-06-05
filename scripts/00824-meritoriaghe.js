@@ -6,7 +6,7 @@
       const myLanguage = "javascript";
 
       let Merit;
-      Merit = `Hello World, My name is ${myName}  and my HNGi7 ID is ${myId}  my email is ${myEmail} i am using ${myLanguage} for stage2`;
+      Merit = `Hello World, this is ${myName} with HNGi7 ID is ${myId} using ${myLanguage} for stage2 task ${myEmail}`;
       console.log("Merit");
       
     
