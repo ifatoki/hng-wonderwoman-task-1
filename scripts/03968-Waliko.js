@@ -1,6 +1,3 @@
-var name = "Walikonadi Sichinga";
-var ID = "HNG-03968";
-var coding_language = "javascript";
-var emailaddress = "likosichinga@yahoo.com";
 
-console.log ("Hello World, this is " + name + " with HNGi7 " + ID + " using " + coding_language + " for stage 2 task " + emailaddress);
+
+console.log ("Hello World, this is Walikonadi Sichinga with HNGi7 ID HNG-03968 using javascript for stage 2 task likosichinga@yahoo.com");
