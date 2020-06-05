@@ -5,7 +5,7 @@ me = {
     name: 'David Ayang',
     id: 'HNG-00715',
     lang: 'Javascript',
-    email: 'david.ayang1gmail.com'
+    email: 'david.ayang1@gmail.com'
 }
 
 const introducer = (person) => {
