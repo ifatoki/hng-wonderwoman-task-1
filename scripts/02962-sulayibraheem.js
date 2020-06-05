@@ -1,6 +1,6 @@
 /*my details*/
 var myName = "Ibrahim Sule";
-var myHngID = "SNG-02962";
+var myHngID = "HNG-02618";
 var stage = 2;
 var programLanguage = "JavaScript";
 var myEmail = "sulayibraheem@gmail.com";
