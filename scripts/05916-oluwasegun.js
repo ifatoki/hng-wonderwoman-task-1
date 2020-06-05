@@ -6,7 +6,7 @@
 function outPutDetails(name,id,lang,email){
 
     console.log(`
-        Hello world, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task ${email}.
+        Hello world, this is ${name} with HNGi7 ID ${id} using ${lang} for stage 2 task ${email}
     `);
 }
 outPutDetails('Peter Oluwasegun','HNG-05916','JavaScript','Petersheg@gmail.com');
