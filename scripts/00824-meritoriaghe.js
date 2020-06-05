@@ -7,7 +7,7 @@
 
       let Merit;
       Merit = `Hello World, this is ${myName} with HNGi7 ID is ${myId} using ${myLanguage} for stage2 task ${myEmail}`;
-      console.log("Merit");
+      console.log(Merit);
       
     
   
