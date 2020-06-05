@@ -4,5 +4,5 @@ var userDetails = {
     email: "muofunanya3@gmail.com",
     language: "Javascript"
 }
-const result = `Hello World, this is ${userDetails.fullName} with HNGi7 ID ${userDetails.id} and email ${userDetails.email} using ${userDetails.language} for stage 2 task ${userDetails.email}`;
+const result = `Hello World, this is ${userDetails.fullName} with HNGi7 ID ${userDetails.id} using ${userDetails.language} for stage 2 task ${userDetails.email}`;
 console.log(result);
