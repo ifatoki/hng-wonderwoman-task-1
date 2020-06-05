@@ -1,4 +1,6 @@
-(function() {
-  let sentence = "Hello World, this is Emmanuel Afuadajo with HNGi7 ID HNG-05142 using javascript for stage 2 task aquilaafuadajo@gmail.com"
-  return sentence
-})()
+const introduceSelf = (name, id, language, email) => {
+  return `Hello World, this is ${name} with HNGi7 ID ${id} using ${language} for stage 2 task ${email}`
+}
+
+introduceSelf('Emmanuel Afuadajo', 'HNG-05142', 'javascript', 'aquilaafuadajo@gmail.com')
+
