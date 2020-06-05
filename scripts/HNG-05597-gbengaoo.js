@@ -1,23 +1,9 @@
-function displayDetails() {
-  var details = {
-    firstname: "Olugbenga",
-    lastname: "Odedele",
-    id: "HNG-05597",
-    language: "javascript",
-    email: "odedeleg@gmail.com",
-  };
-  console.log(
-    "Hello World, this is " +
-      details["firstname"] +
-      " " +
-      details["lastname"] +
-      " with HNGi7 ID " +
-      details["id"] +
-      " using " +
-      details["language"] +
-      " for stage 2 task. " +
-      details["email"]
-  );
-}
+const firstname = "Olugbenga";
+const lastname = "Odedele";
+const id = "HNG-05597";
+const language = "javascript";
+const email = "odedeleg@gmail.com";
 
-displayDetails();
+console.log(
+  "Hello World, this is ${firstname} ${lastname} with HNGi7 ID ${id} using ${language} for stage 2 task. ${email}"
+);
