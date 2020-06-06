@@ -1,0 +1,1 @@
+console.log("Hello World, this is Okeke Obinna Chinedu with HNGi7 ID HNG-04239 using javascript for stage 2 task okekeobinna99@gmail.com")
