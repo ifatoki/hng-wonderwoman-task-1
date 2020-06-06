@@ -3,7 +3,7 @@
 let fullName = "Chiezie Ifunanya Eucharia";
 let hngId = "HNG-03806"
 let language = "javascript";
-let email = "chiezieifunanya08gmail.com";
+let email = "chiezieifunanya08@gmail.com";
 
 //actual code
 
