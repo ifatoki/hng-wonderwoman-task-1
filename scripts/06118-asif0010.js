@@ -6,4 +6,4 @@
   var technologyUsed="JavaScript";
   var email="ogunwolejamesolusegun1@gmail.com";
   
-  console.log('Hello World, this is &{fullName} with HNGi7 ${hngId} using ${technologyUsed} for stage ${taskStage} task ${email}');
+  console.log('Hello World, this is ${fullName} with HNGi7 ${hngId} using ${technologyUsed} for stage ${taskStage} task ${email}');
