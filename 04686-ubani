@@ -1,0 +1,14 @@
+const firstname= 'Isaac';
+const middlename= 'Ubani';
+const surname='Dimowo';
+const language= 'JavaScript';
+const HNG_id='HNG-04686';
+const email='dimowoisaac@yahoo.com'
+
+function outputToConsole() {
+	const output = `Hello World, this is [${firstname}] [${middename}] [${surname}] 
+	with HNG7_id [${HNG_id}] using [${language}] for stage two task. 
+	${email}`;
+	return output;
+};
+console.log(outputToConsole());
