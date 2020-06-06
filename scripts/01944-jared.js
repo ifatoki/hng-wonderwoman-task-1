@@ -5,4 +5,4 @@ const lang='Javascript';
 const email='okumujaro@gmail.com';
 
 //output!
-console.log('Hello World, this is ' + full_name + 'with HNGi7 ID ' + id + ' using ' + lang + ' for stage 2 task ' +email);
+console.log('Hello World, this is ' + full_name + ' with HNGi7 ID ' + id + ' using ' + lang + ' for stage 2 task ' +email);
