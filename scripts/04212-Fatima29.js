@@ -1,1 +1,0 @@
-console.log('Hello World, this is Olanrewaju Fatima with HNGi7 ID HNG-04212 using JavaScript language for stage 2 task folanrewaju044@gmail.com');

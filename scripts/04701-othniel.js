@@ -1,1 +1,0 @@
-console.log("Hello World, this is Othniel Agera with HNGi7 ID HNG-04701 using javascript for stage 2 task otagera@gmail.com")

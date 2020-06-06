@@ -1,1 +1,0 @@
-print('Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task {}'.format('Ayevbeosa Iyamu', 'HNG-05880', 'Python', 'ayevbeosa.j@gmail.com'))
