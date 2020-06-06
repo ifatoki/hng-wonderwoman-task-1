@@ -9,4 +9,4 @@ function data() {
     return (displaydata);  
 } 
 
-data()
+console.log(data())
