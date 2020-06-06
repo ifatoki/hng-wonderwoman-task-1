@@ -1,6 +1,6 @@
 //variable declaration
 function data() {
-    var name = "Omoniyi Joel Ayoola ";
+    var name = "Joel Omoniyi ";
     var id = "HNG-02416";
     var email = "omoniyijoel10@gmail.com";
     var language = "JavaScript";
