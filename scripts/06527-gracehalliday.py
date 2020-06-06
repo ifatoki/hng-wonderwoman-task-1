@@ -1,4 +1,4 @@
 name='grace halliday'
 email='gracehally7@gmail.com'
 Hngid='HNG-06527'
-Print('Hello World,this is',name,'with HNG ID',Hngid,'using python for stage 2 task',email)
+Print('Hello World,this is',name,'with HNGi7 ID',Hngid,'using python for stage 2 task',email)
